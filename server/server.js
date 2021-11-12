@@ -100,6 +100,7 @@ app.get('/reset', (req, res) => {
   incorrectAnswers = [];
   rounds.round = 0;
   theNumber = randomNumber(1, 25);
+  console.log(theNumber);
   res.send('round reset');
 })
 
