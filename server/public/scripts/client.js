@@ -2,8 +2,7 @@ $(document).ready(handleReady);
 function handleReady() {
   console.log("jquery is loaded!");
   $('#submitBtn').on('click', handleGuess);
-  // $('#resetBtn').on('click', handleResetButton);
-  // handleRenderItems();
+  $('#resetBtn').on('click', handleResetButton);
 }
 
 // Send server guesses. Server responds if correct, if not responds how close each guess was.
@@ -42,21 +41,22 @@ function handleRenderItems() {
     <li>Guess 2: ${response[1]}</li>
     <li>Guess 3: ${response[2]}</li>
     <li>Guess 4: ${response[3]}</li>
+    
     `);
   }).catch ((error) => {
     console.log('error', error);
   });
 }
 
-/*
-function handleResetButton{
+
+function handleResetButton(){
   $.ajax ({
     method: 'GET',
     url: '/reset'
   }).then ((response) => {
+    console.log(response);
     $('#history').empty();
   }).catch ((error) => {
     console.log('error:', error);
   });
 }
-*/

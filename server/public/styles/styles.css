@@ -19,11 +19,11 @@ input{
 
 #submitBtn {
     margin-top: 1rem;
-    background-color: #d5efae;
+    background-color: #a2ba7d;
     padding: 10px 20px;
     border-radius: 10px;
     border-color: #627544;
-    color: #585656;
+    color: white;
 }
 
 #submitBtn:hover {
@@ -40,6 +40,7 @@ input[type=number] {
 #history {
     border: 3px solid rgb(172, 168, 168);
     margin: 0 40% 0 40%;
+    background-color: #b1b5b2;
 }
 
 #resetBtn {

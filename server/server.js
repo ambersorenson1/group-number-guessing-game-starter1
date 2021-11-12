@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
 // GET & POST Routes go here
+
 //Post handling players guesses.
 app.post('/guess', (req, res) => {
   console.log('the number', theNumber);
@@ -64,7 +65,8 @@ if(req.body.number4 == theNumber){
 }else{
   incorrectAnswers.push(`Guess ${req.body.number4}, too low`);
 }
-//This isn't working.
+
+//handles round number.
 rounds.round ++;
 res.send(`${rounds.round}`);
 console.log('round:', rounds.round);
@@ -82,7 +84,7 @@ app.get('/answer', (req, res) => {
     incorrectAnswers = [];
     //Reroll a new number target.
     theNumber = randomNumber(1, 25);
-    //Reset the rounds that totally aren't working.
+    //Reset the rounds that totally are working.
     rounds.round = 0;
     //Else if all incorrect answers:
     }else{
@@ -93,7 +95,13 @@ app.get('/answer', (req, res) => {
     }
 });
 
-
+app.get('/reset', (req, res) => {
+  correctAnswers = [];
+  incorrectAnswers = [];
+  rounds.round = 0;
+  theNumber = randomNumber(1, 25);
+  res.send('round reset');
+})
 
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
