@@ -1,6 +1,56 @@
+body {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+header {
+    color: white;
+    background-color: rgb(172, 168, 168);
+}
+
 input{
     width: 18%;
 }
-html{
-    background-color: aqua;
+
+#container {
+    display: flex;
+    justify-content: center;
+}
+
+#submitBtn {
+    margin-top: 1rem;
+    background-color: #d5efae;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-color: #627544;
+    color: #585656;
+}
+
+#submitBtn:hover {
+    background-color: #c1db9b;
+}
+
+input[type=number] {
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius: 10px;
+}
+
+#history {
+    border: 3px solid rgb(172, 168, 168);
+    margin: 0 40% 0 40%;
+}
+
+#resetBtn {
+    margin-top: 1rem;
+    background-color: rgb(193 74 74);
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#resetBtn:hover {
+    background-color: rgb(175 54 54);
 }

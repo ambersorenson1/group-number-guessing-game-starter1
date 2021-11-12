@@ -2,12 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const PORT = 5000;
+//Initialize object rounds. The only attribute we use is round. It's not currently working.
+let rounds = {round: 0, player1: '', player2: '', player3: '', player4: ''};
+//Initialize theNumber randomly to set the target.
+let theNumber = randomNumber(1, 25);
+//Initialize correctAnswers to an empty array to populate with winners.
+let correctAnswers = [];
+//Initialize incorrectAnswers to an empty array to populate with too high or too low for losers.
+let incorrectAnswers = [];
 
+//Function to randomize number for theNumber.
 function randomNumber(min, max){
   return Math.floor(Math.random() * (1 + max - min) + min);
 }
-
-let theNumber = randomNumber(1, 25);
+//Logging the number so we know which one to choose if we want to test winners.
 console.log(theNumber);
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
@@ -16,44 +24,25 @@ app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
 // GET & POST Routes go here
-
+//Post handling players guesses.
 app.post('/guess', (req, res) => {
   console.log('the number', theNumber);
   console.log(req.body);
-  let correctAnswers = [];
-  let incorrectAnswers = [];
-  // // 🌈🌈🌈🌈🌈 What do you see if you run: 🌈🌈🌈🌈🌈
-  // console.log(req.body);
-  //   // -Matt :)
-  // for(let guess of req.body){
-    // if(guess.number === theNumber){
-    //   correctAnswers.push(req.body.indexOf(guess));
-    // }else if (guess.number > theNumber) {
-    //   incorrectAnswers.push('Guess too high'); 
-    // }else{
-    //   incorrectAnswers.push('Guess too low');
-    // }
-  // }
-  // if(correctAnswers.length > 0){
-  // res.send('The correct answers are: ', correctAnswers);
-  // }else{
-  // res.send(incorrectAnswers);
-  // }
-  // res.send(req.body);
-// });
 
-console.log('Guess 1:', req.body.number1);
-
+//Conditional for player 1's guess.
 if(req.body.number1 == theNumber){
-  correctAnswers.push(req.body.number1)
+  //If player 1's guess correct, populate correctAnswer array.
+  correctAnswers.push('Player 1 wins!');
 }else if (req.body.number1 > theNumber) {
+  //If player 1's guess is incorrect, and its too high. Populate incorrectAnswer array.
   incorrectAnswers.push('Guess too high'); 
 }else{
+  //If player 1's guess is incorrect, and its too low. Populate incorrectAnswer array.
   incorrectAnswers.push('Guess too low');
 }
-
+//Repeat above logic for other 3 players.
 if(req.body.number2 == theNumber){
-  correctAnswers.push(req.body.number2)
+  correctAnswers.push('Player 2 wins!');
 }else if (req.body.number2 > theNumber) {
   incorrectAnswers.push('Guess too high'); 
 }else{
@@ -61,7 +50,7 @@ if(req.body.number2 == theNumber){
 }
 
 if(req.body.number3 == theNumber){
-  correctAnswers.push(req.body.number3)
+  correctAnswers.push('Player 3 wins!');
 }else if (req.body.number3 > theNumber) {
   incorrectAnswers.push('Guess too high'); 
 }else{
@@ -69,23 +58,40 @@ if(req.body.number3 == theNumber){
 }
 
 if(req.body.number4 == theNumber){
-  correctAnswers.push(req.body.number4)
+  correctAnswers.push('Player 4 wins!');
 }else if (req.body.number4 > theNumber) {
   incorrectAnswers.push('Guess too high'); 
 }else{
   incorrectAnswers.push('Guess too low');
 }
-
-// console.log('correct answers are:', correctAnswers);
-// console.log('incorrect answers are:', incorrectAnswers);
-
-if(correctAnswers.length > 0){
-  console.log('The correct answers are: ', correctAnswers);
-  res.send({response: 'The correct answers are: ', correctAnswers});
-  }else{
-   res.send(incorrectAnswers);
-  }
+//This isn't working.
+rounds.round ++;
+res.send(`${rounds.round}`);
 });
+
+//Handle get for rendering answers.
+app.get('/answer', (req, res) => {
+  //Check if a correct answer has been populated into the array. Run winning logic.
+  if(correctAnswers.length > 0){
+    //Respond with correctAnswer array.
+    res.send(correctAnswers);
+    //Reset correctAnswer array for next game.
+    correctAnswers = [];
+    //Reset incorrectAnswer array for next game.
+    incorrectAnswers = [];
+    //Reroll a new number target.
+    theNumber = randomNumber(1, 25);
+    //Reset the rounds that totally aren't working.
+    rounds.round = 0;
+    //Else if all incorrect answers:
+    }else{
+      //Send incorrectAnswers array.
+      res.send(incorrectAnswers);
+      //Reset incorrectAnswers array so we don't append lots of stuff.
+      incorrectAnswers = [];
+    }
+});
+
 
 
 app.listen(PORT, () => {

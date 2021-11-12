@@ -11,11 +11,20 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <h1>YOUR GAME HERE!</h1>
-    <input id="guess-1" type="number" placeholder="Guess 1">
-    <input id="guess-2" type="number" placeholder="Guess 2">
-    <input id="guess-3" type="number" placeholder="Guess 3">
-    <input id="guess-4" type="number" placeholder="Guess 4">
+    <header>
+      <h1>Guess The Number!</h1>
+    </header>
+    <div id="container">
+      <div>
+        <input id="guess-1" type="number" placeholder="Guess 1">
+        <input id="guess-2" type="number" placeholder="Guess 2">
+        <input id="guess-3" type="number" placeholder="Guess 3">
+        <input id="guess-4" type="number" placeholder="Guess 4">
+      </div>
+    </div>
     <button id="submitBtn">Submit</button>
+    <button id="resetBtn">Reset</button>
+    <h3 id="round-num"></h3>
+    <ul id="history"></ul>
 </body>
 </html>
