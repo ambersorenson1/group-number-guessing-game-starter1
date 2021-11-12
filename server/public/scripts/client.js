@@ -1,3 +1,4 @@
+// We call Jquery and run our handleReady function 
 $(document).ready(handleReady);
 function handleReady() {
   console.log("jquery is loaded!");
@@ -14,7 +15,10 @@ function handleGuess () {
     number3: $('#guess-3').val(),
     number4: $('#guess-4').val(),
   };
-
+  $('#guess-1').val('');
+  $('#guess-2').val('');
+  $('#guess-3').val('');
+  $('#guess-4').val('');
   $.ajax ({
     method: 'POST',
     url: '/guess',
@@ -29,7 +33,9 @@ function handleGuess () {
     console.log('error', error);
   });
 }
-
+// We are getting information from the server and then we are appending
+// the "guess" information to the DOM based off of the index
+//position of the array.
 function handleRenderItems() {
   $.ajax ({
     method: 'GET',
@@ -48,6 +54,11 @@ function handleRenderItems() {
   });
 }
 
+// We are sending a request from the server to reset the game,
+// by resetting the arrays, round number, and rerolling the number.
+// On successful response, we empty
+// the information in the un-ordered list from HTML file when we 
+// press the reset button
 
 function handleResetButton(){
   $.ajax ({

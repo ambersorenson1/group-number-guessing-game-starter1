@@ -8,6 +8,9 @@ body {
 header {
     color: white;
     background-color: rgb(172, 168, 168);
+    animation-name: squish;
+    animation-duration: 2s;
+    animation-fill-mode: both;
 }
 
 input{
@@ -17,6 +20,8 @@ input{
 #container {
     display: flex;
     justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 #submitBtn {
@@ -37,7 +42,7 @@ input[type=number] {
     padding:10px;
     border:0;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 #history {
@@ -58,4 +63,9 @@ input[type=number] {
 
 #resetBtn:hover {
     background-color: rgb(175 54 54);
+}
+
+@keyframes squish {
+    from {height: 0px;}
+    to {height: 40px;}
 }
