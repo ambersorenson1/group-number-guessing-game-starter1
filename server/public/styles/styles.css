@@ -13,6 +13,12 @@ header {
     animation-fill-mode: both;
 }
 
+h1 {
+    animation-name: fadeIn;
+    animation-duration: 4s;
+    animation-fill-mode: both;
+}
+
 input{
     width: 18%;
 }
@@ -68,4 +74,9 @@ input[type=number] {
 @keyframes squish {
     from {height: 0px;}
     to {height: 40px;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
 }
