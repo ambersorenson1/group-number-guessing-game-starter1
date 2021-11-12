@@ -35,38 +35,39 @@ if(req.body.number1 == theNumber){
   correctAnswers.push('Player 1 wins!');
 }else if (req.body.number1 > theNumber) {
   //If player 1's guess is incorrect, and its too high. Populate incorrectAnswer array.
-  incorrectAnswers.push('Guess too high'); 
+  incorrectAnswers.push(`Guess ${req.body.number1}, too high`); 
 }else{
   //If player 1's guess is incorrect, and its too low. Populate incorrectAnswer array.
-  incorrectAnswers.push('Guess too low');
+  incorrectAnswers.push(`Guess ${req.body.number1}, too low`);
 }
 //Repeat above logic for other 3 players.
 if(req.body.number2 == theNumber){
   correctAnswers.push('Player 2 wins!');
 }else if (req.body.number2 > theNumber) {
-  incorrectAnswers.push('Guess too high'); 
+  incorrectAnswers.push(`Guess ${req.body.number2}, too high`); 
 }else{
-  incorrectAnswers.push('Guess too low');
+  incorrectAnswers.push(`Guess ${req.body.number2}, too low`);
 }
 
 if(req.body.number3 == theNumber){
   correctAnswers.push('Player 3 wins!');
 }else if (req.body.number3 > theNumber) {
-  incorrectAnswers.push('Guess too high'); 
+  incorrectAnswers.push(`Guess ${req.body.number3}, too high`); 
 }else{
-  incorrectAnswers.push('Guess too low');
+  incorrectAnswers.push(`Guess ${req.body.number3}, too low`);
 }
 
 if(req.body.number4 == theNumber){
   correctAnswers.push('Player 4 wins!');
 }else if (req.body.number4 > theNumber) {
-  incorrectAnswers.push('Guess too high'); 
+  incorrectAnswers.push(`Guess ${req.body.number4}, too high`); 
 }else{
-  incorrectAnswers.push('Guess too low');
+  incorrectAnswers.push(`Guess ${req.body.number4}, too low`);
 }
 //This isn't working.
 rounds.round ++;
 res.send(`${rounds.round}`);
+console.log('round:', rounds.round);
 });
 
 //Handle get for rendering answers.

@@ -2,18 +2,10 @@ $(document).ready(handleReady);
 function handleReady() {
   console.log("jquery is loaded!");
   $('#submitBtn').on('click', handleGuess);
+  // $('#resetBtn').on('click', handleResetButton);
   // handleRenderItems();
 }
-// function handleTheClick(){
-//   theGuess = [
-//     {number: $('#guess-1').val()},
-//     {number: $('#guess-2').val()},
-//     {number: $('#guess-3').val()},
-//     {number: $('#guess-4').val()},
-//   ];
-//   // console.log(theGuess);
-//   handleGuess(theGuess);
-// }
+
 // Send server guesses. Server responds if correct, if not responds how close each guess was.
 // On correct response, send ajax get for a new number.
 function handleGuess () {
@@ -28,13 +20,10 @@ function handleGuess () {
     method: 'POST',
     url: '/guess',
     data: theGuess
-    // ^Looks like `theGuess` is probably undefined right here ^
-    // Maybe...handleGuess needs a parameter?
-    // Worth a shot anyway. Ping me if you're still stuck on this after 5-10 minutes....
   }).then ((response) => {
-    console.log('response received');
+    console.log(response);
     $('#history').append(`
-    <li>Round: ${response.round})</li>
+    <li>Round: ${response}</li>
     `);
     handleRenderItems();
   }).catch ((error) => {
@@ -59,6 +48,15 @@ function handleRenderItems() {
   });
 }
 
-// function handleResetButton{
-//   $('#resetBtn').on('click')
-// }
+/*
+function handleResetButton{
+  $.ajax ({
+    method: 'GET',
+    url: '/reset'
+  }).then ((response) => {
+    $('#history').empty();
+  }).catch ((error) => {
+    console.log('error:', error);
+  });
+}
+*/
